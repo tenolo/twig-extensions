@@ -49,6 +49,10 @@ class ContentExtension extends \Twig_Extension
      */
     public function compileInline(\Twig_Environment $environment, $context, $string)
     {
+        if (empty($string)) {
+            return null;
+        }
+
         return $environment->render($string, $context);
     }
 }
