@@ -2,6 +2,9 @@
 
 namespace Tenolo\Twig\Extensions\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
  * Class ArrayExtension
  *
@@ -9,7 +12,7 @@ namespace Tenolo\Twig\Extensions\Extension;
  * @author  Nikita Loges
  * @company tenolo GbR
  */
-class ArrayExtension extends \Twig_Extension
+class ArrayExtension extends AbstractExtension
 {
 
     /**
@@ -17,17 +20,18 @@ class ArrayExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('merge_recursive', array($this, 'arrayMergeRecursive')),
-            new \Twig_SimpleFilter('array_merge_recursive', array($this, 'arrayMergeRecursive')),
-            new \Twig_SimpleFilter('array_replace', array($this, 'arrayReplace')),
-            new \Twig_SimpleFilter('array_replace_recursive', array($this, 'arrayReplaceRecursive')),
-        );
+        return [
+            new TwigFilter('merge_recursive', [$this, 'arrayMergeRecursive']),
+            new TwigFilter('array_merge_recursive', [$this, 'arrayMergeRecursive']),
+            new TwigFilter('array_replace', [$this, 'arrayReplace']),
+            new TwigFilter('array_replace_recursive', [$this, 'arrayReplaceRecursive']),
+        ];
     }
 
     /**
      * @param $arr1
      * @param $arr2
+     *
      * @return array
      * @throws \Twig_Error_Runtime
      */
@@ -43,6 +47,7 @@ class ArrayExtension extends \Twig_Extension
     /**
      * @param $arr1
      * @param $arr2
+     *
      * @return array
      * @throws \Twig_Error_Runtime
      */
@@ -58,6 +63,7 @@ class ArrayExtension extends \Twig_Extension
     /**
      * @param $arr1
      * @param $arr2
+     *
      * @return array
      * @throws \Twig_Error_Runtime
      */
@@ -68,13 +74,5 @@ class ArrayExtension extends \Twig_Extension
         }
 
         return array_replace_recursive($arr1, $arr2);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'tenolo_array';
     }
 } 

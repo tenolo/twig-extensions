@@ -2,6 +2,9 @@
 
 namespace Tenolo\Twig\Extensions\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+
 /**
  * Class FilesizeExtension
  *
@@ -9,7 +12,7 @@ namespace Tenolo\Twig\Extensions\Extension;
  * @author  Nikita Loges
  * @company tenolo GbR
  */
-class FilesizeExtension extends \Twig_Extension
+class FilesizeExtension extends AbstractExtension
 {
 
     /**
@@ -17,13 +20,14 @@ class FilesizeExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('format_bytes', array($this, 'formatBytes')),
-        );
+        return [
+            new TwigFilter('format_bytes', [$this, 'formatBytes']),
+        ];
     }
 
     /**
      * @param $bytes
+     *
      * @return string
      */
     public function formatBytes($bytes, $decimals = 2, $decPoint = ',', $thousandsSep = '.')
@@ -51,12 +55,4 @@ class FilesizeExtension extends \Twig_Extension
             }
         }
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'tenolo_filesize';
-    }
-} 
+}

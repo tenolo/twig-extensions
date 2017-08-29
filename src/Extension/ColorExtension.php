@@ -3,6 +3,8 @@
 namespace Tenolo\Twig\Extensions\Extension;
 
 use Tenolo\Utilities\Utils\ColorUtil;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * Class ColorExtension
@@ -11,7 +13,7 @@ use Tenolo\Utilities\Utils\ColorUtil;
  * @author  Nikita Loges
  * @company tenolo GbR
  */
-class ColorExtension extends \Twig_Extension
+class ColorExtension extends AbstractExtension
 {
 
     /**
@@ -19,16 +21,21 @@ class ColorExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('rgb', array($this, 'hex2rgb')),
-            new \Twig_SimpleFilter('rgb_r', array($this, 'hex2rgb_r')),
-            new \Twig_SimpleFilter('rgb_g', array($this, 'hex2rgb_g')),
-            new \Twig_SimpleFilter('rgb_b', array($this, 'hex2rgb_b')),
-        );
+        return [
+            new TwigFilter('rgb', [$this, 'hex2rgb']),
+            new TwigFilter('rgb_r', [$this, 'hex2rgb_r']),
+            new TwigFilter('rgb_g', [$this, 'hex2rgb_g']),
+            new TwigFilter('rgb_b', [$this, 'hex2rgb_b']),
+            new TwigFilter('hsl', [$this, 'hex2hsl']),
+            new TwigFilter('hsl_l', [$this, 'hex2hsl_l']),
+            new TwigFilter('hsl_h', [$this, 'hex2hsl_h']),
+            new TwigFilter('hsl_s', [$this, 'hex2hsl_s']),
+        ];
     }
 
     /**
      * @param $hex
+     *
      * @return array
      */
     public function hex2rgb($hex)
@@ -38,6 +45,7 @@ class ColorExtension extends \Twig_Extension
 
     /**
      * @param $hex
+     *
      * @return string
      */
     public function hex2rgb_r($hex)
@@ -47,6 +55,7 @@ class ColorExtension extends \Twig_Extension
 
     /**
      * @param $hex
+     *
      * @return string
      */
     public function hex2rgb_g($hex)
@@ -56,6 +65,7 @@ class ColorExtension extends \Twig_Extension
 
     /**
      * @param $hex
+     *
      * @return string
      */
     public function hex2rgb_b($hex)
@@ -64,10 +74,42 @@ class ColorExtension extends \Twig_Extension
     }
 
     /**
-     * @return string
+     * @param $hex
+     *
+     * @return array
      */
-    public function getName()
+    public function hex2hsl($hex)
     {
-        return 'tenolo_color';
+        return ColorUtil::hex2hsl($hex);
     }
-} 
+
+    /**
+     * @param $hex
+     *
+     * @return float
+     */
+    public function hex2hsl_l($hex)
+    {
+        return ColorUtil::hex2hsl($hex)['l'];
+    }
+
+    /**
+     * @param $hex
+     *
+     * @return float
+     */
+    public function hex2hsl_h($hex)
+    {
+        return ColorUtil::hex2hsl($hex)['h'];
+    }
+
+    /**
+     * @param $hex
+     *
+     * @return float
+     */
+    public function hex2hsl_s($hex)
+    {
+        return ColorUtil::hex2hsl($hex)['s'];
+    }
+}

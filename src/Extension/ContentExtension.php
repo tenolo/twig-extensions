@@ -2,6 +2,10 @@
 
 namespace Tenolo\Twig\Extensions\Extension;
 
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
+
 /**
  * Class ContentExtension
  *
@@ -9,7 +13,7 @@ namespace Tenolo\Twig\Extensions\Extension;
  * @author  Nikita Loges
  * @company tenolo GbR
  */
-class ContentExtension extends \Twig_Extension
+class ContentExtension extends AbstractExtension
 {
 
     /**
@@ -18,7 +22,7 @@ class ContentExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('inline_compile', [$this, 'compileInline'], [
+            new TwigFunction('inline_compile', [$this, 'compileInline'], [
                 'needs_environment' => true,
                 'needs_context'     => true,
                 'is_safe'           => ['all']
@@ -32,7 +36,7 @@ class ContentExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('inline_compile', [$this, 'compileInline'], [
+            new TwigFilter('inline_compile', [$this, 'compileInline'], [
                 'needs_environment' => true,
                 'needs_context'     => true,
                 'is_safe'           => ['all']
