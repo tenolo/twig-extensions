@@ -4,6 +4,7 @@ namespace Tenolo\Twig\Extensions\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Class ArrayExtension
@@ -14,6 +15,19 @@ use Twig\TwigFilter;
  */
 class ArrayExtension extends AbstractExtension
 {
+
+    /**
+     * @return array
+     */
+    public function getFunctions()
+    {
+        return [
+            new TwigFunction('merge_recursive', [$this, 'arrayMergeRecursive']),
+            new TwigFunction('array_merge_recursive', [$this, 'arrayMergeRecursive']),
+            new TwigFunction('array_replace', [$this, 'arrayReplace']),
+            new TwigFunction('array_replace_recursive', [$this, 'arrayReplaceRecursive']),
+        ];
+    }
 
     /**
      * @return array
