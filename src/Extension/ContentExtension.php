@@ -2,6 +2,7 @@
 
 namespace Tenolo\Twig\Extensions\Extension;
 
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -45,13 +46,13 @@ class ContentExtension extends AbstractExtension
     }
 
     /**
-     * @param \Twig_Environment $environment
+     * @param Environment $environment
      * @param                   $context
      * @param                   $string
      *
      * @return mixed|string
      */
-    public function compileInline(\Twig_Environment $environment, $context, $string)
+    public function compileInline(Environment $environment, $context, $string)
     {
         if (empty($string)) {
             return null;
