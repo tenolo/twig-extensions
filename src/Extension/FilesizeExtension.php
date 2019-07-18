@@ -26,7 +26,11 @@ class FilesizeExtension extends AbstractExtension
     }
 
     /**
-     * @param $bytes
+     * @param        $bytes
+     *
+     * @param int    $decimals
+     * @param string $decPoint
+     * @param string $thousandsSep
      *
      * @return string
      */
@@ -38,21 +42,18 @@ class FilesizeExtension extends AbstractExtension
         $tb = $gb * 1024;
 
         if ($bytes < $kb) {
-            return $bytes . ' B';
-        } else {
-            if ($bytes < $mb) {
-                return number_format($bytes / $kb, $decimals, $decPoint, $thousandsSep) . ' KB';
-            } else {
-                if ($bytes < $gb) {
-                    return number_format($bytes / $mb, $decimals, $decPoint, $thousandsSep) . ' MB';
-                } else {
-                    if ($bytes < $tb) {
-                        return number_format($bytes / $gb, $decimals, $decPoint, $thousandsSep) . ' GB';
-                    } else {
-                        return number_format($bytes / $tb, $decimals, $decPoint, $thousandsSep) . ' TB';
-                    }
-                }
-            }
+            return $bytes.' B';
         }
+        if ($bytes < $mb) {
+            return number_format($bytes / $kb, $decimals, $decPoint, $thousandsSep).' KB';
+        }
+        if ($bytes < $gb) {
+            return number_format($bytes / $mb, $decimals, $decPoint, $thousandsSep).' MB';
+        }
+        if ($bytes < $tb) {
+            return number_format($bytes / $gb, $decimals, $decPoint, $thousandsSep).' GB';
+        }
+
+        return number_format($bytes / $tb, $decimals, $decPoint, $thousandsSep).' TB';
     }
 }
