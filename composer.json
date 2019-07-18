@@ -10,12 +10,12 @@
     ],
     "type": "library",
     "license": "MIT",
-    "homepage": "http://tenolo.de",
+    "homepage": "https://tenolo.de",
     "authors": [
         {
-            "name": "tenolo - Robert Bernis, Johannes Herberhold GbR",
+            "name": "tenolo GmbH & Co. KG",
             "email": "info@tenolo.de",
-            "homepage": "http://tenolo.de"
+            "homepage": "https://tenolo.de"
         },
         {
             "name": "Nikita Loges",
@@ -31,12 +31,6 @@
         "twig/twig": "^2.11|^3.0",
         "tenolo/utilities": "~1.6"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.tenolo.com/"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Tenolo\\Twig\\Extensions\\": "src/"
@@ -49,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.1-dev"
         }
     },
     "minimum-stability": "dev",
