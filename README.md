@@ -18,7 +18,7 @@ First you need to add `tenolo/twig-extensions` to `composer.json`:
 Let Composer do it for you.
 
 ``` bash
-$ composer require twig-extensions
+$ composer require tenolo/twig-extensions
 ```
 
 or do it manually
