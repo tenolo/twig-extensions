@@ -7,9 +7,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dm/tenolo/twig-extensions.svg)](https://packagist.org/packages/tenolo/twig-extensions)
 [![License](https://img.shields.io/packagist/l/tenolo/twig-extensions.svg)](https://packagist.org/packages/tenolo/twig-extensions)
 
-# Utilities Library
+# Twig Extensions
 
-A growing collection of useful helper classes for PHP.
+A collection of simple twig extensions..
 
 ## Install instructions
 
